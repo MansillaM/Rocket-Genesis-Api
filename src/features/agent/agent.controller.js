@@ -1,6 +1,6 @@
 const agentModel = require("../../shared/resources/db/mongodb/schemas").Agent;
 
-// GET all agents
+// GET All agents
 const getAgents = async(req, res) => {
     const agents = await agentModel.find({});
 
@@ -11,11 +11,11 @@ const getAgents = async(req, res) => {
   }
 }
 
-// GET agents by region
+// GET Agents by region
 const agentByRegion = async(req, res) => {
-  const region = req.query.region; // Get the region query parameter from the URL
+  const region = req.query.region;
   try {
-    const agents = await agentModel.find({ region: region }); // Find agents by region in MongoDB Atlas
+    const agents = await agentModel.find({ region: region });
     if (agents.length === 0) {
       res.status(404).send("No agents found for this region");
     } else {
@@ -26,7 +26,7 @@ const agentByRegion = async(req, res) => {
   }
 }
 
-// POST method to create a new agent
+// POST Method to create a new agent
 const createAgent = async(req, res) => {
   const agents = new agentModel(req.body);
 
@@ -38,7 +38,7 @@ const createAgent = async(req, res) => {
   }
 }
 
-// PATCH method to update a specific agent
+// PATCH Method to update a specific agent
 const updateAgent = async(req, res) => {
   try {
     await agentModel.findByIdAndUpdate(req.params.id, req.body);
@@ -49,7 +49,7 @@ const updateAgent = async(req, res) => {
   }
 }
 
-// DELETE method to delete an agent
+// DELETE Method to delete an agent
 const deleteAgent = async(req, res) => {
   try {
     const agents = await agentModel.findByIdAndDelete(req.params.id);
@@ -60,6 +60,7 @@ const deleteAgent = async(req, res) => {
     res.status(500).send(error);
   }
 }
+
 
 module.exports = 
   {
