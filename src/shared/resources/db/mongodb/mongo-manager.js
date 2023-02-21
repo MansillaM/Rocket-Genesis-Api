@@ -1,10 +1,14 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
+const uri = process.env.MONGO_URI
 
-const openMongoConnection = () => {
-  return mongoose.connect('mongodb+srv://Matias:p6kkCOLCAsXOFDwK@matiasm.vrug6cd.mongodb.net/Rocket-Genesis-Api?retryWrites=true&w=majority')
-  .then(()=>console.log('connected to MongoDB'))
-  .catch((err) => console.log(err))
+const openMongoConnection = async () => {
+  const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function callback () {
+        console.log("connected to MongoDB!");
+    });
+    mongoose.connect(uri);
 };
 
 mongoose.set('strictQuery', true)
