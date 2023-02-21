@@ -1,22 +1,20 @@
 const express = require("express");
-const RegionControler = require('../features/region/region.controller')
 const app = express();
+const RegionControler = require('../features/region/region.controller')
+
 
 const registerRegionRoute = (app) => {
-    app.get('/region', RegionControler.region);
+
+    app.get('/region-all', RegionControler.region);
+
+    app.get('/region', RegionControler.regionByRegion);
+
+    app.post('region-create', RegionControler.createRegion);
+
 }
-//GET all regions
-// app.get("/region", async (request, response) => {
-//     const regions = await regionModel.Region.find({});
-  
-//     try {
-//       response.send(regions);
-//     } catch (error) {
-//       response.status(500).send(error);
-//     }
-//   });
 
 module.exports = 
     {
+        app,
         registerRegionRoute
     };
