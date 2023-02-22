@@ -29,4 +29,9 @@ const installPercentFees = {
   excelium: 20,
 };
 
-module.exports = {agents,unitPrices,installPercentFees};
+module.exports = 
+  {
+    agents,
+    unitPrices,
+    installPercentFees
+  };
