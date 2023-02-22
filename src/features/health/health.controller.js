@@ -19,4 +19,9 @@ const error = async(req,res) => {
   res.send('error');
 };
 
-module.exports = {helloWorld, status, error};
+module.exports = 
+  {
+    helloWorld, 
+    status, 
+    error
+  };

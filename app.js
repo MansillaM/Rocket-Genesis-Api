@@ -13,6 +13,8 @@ app.use(middleWare);
 const HealthRoutes = require('./src/routes/health.routes');
 const AgentRoutes = require('./src/routes/agents.routes')
 const RegionRoute = require('./src/routes/region.routes')
+const PublicRoutes = require('./src/routes/public.routes');
+const AdminRoutes = require('./src/routes/admin.routes');
 
 app.use(Express.json());
 
@@ -20,7 +22,8 @@ app.use(Express.json());
 HealthRoutes.registerHealthRoutes(app);
 AgentRoutes.registerAgentRoutes(app);
 RegionRoute.registerRegionRoute(app);
-
+AdminRoutes.registerAdminRoutes(app);
+PublicRoutes.registerPublicRoutes(app);
 
 //  MongoDB connect
 MongoManager.openMongoConnection();
