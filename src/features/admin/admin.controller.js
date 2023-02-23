@@ -1,13 +1,18 @@
-const Data = require('../../shared/resources/data');
+const Data = require('../../shared/resources/db/mongodb/schemas').Agent;
 
-const emailList = (req,res) => {
-  const emails = Data.agents.map(agent=>agent.email);
-  res.send(emails.toString());
+const emailList = async (req, res) => {
+  try {
+    const agents = await Data.find();
+    const emails = agents.map(agent => agent.email);
+    res.send(emails.toString());
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 const regionAverage = (req,res) => {
   const region = req.query.region.toLowerCase();
-  const agents = Data.agents.filter(agent => agent.region.toLowerCase() === region);
+  const agents = Data.filter(agent => agent.region.toLowerCase() === region);
 
   if(!agents.length){
     res.send(`No agents in region: ${region}`);

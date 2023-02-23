@@ -25,7 +25,7 @@ const getAgents = async(req, res) => {
 const agentByRegion = async(req, res) => {
   const region = req.query.region;
   try {
-    const agents = await agentModel.find({ region: region });
+    const agents = await agentModel.find({ region: region }).sort({ rating: -1 });
     if (agents.length === 0) {
       res.status(404).send("No agents found for this region");
     } else {

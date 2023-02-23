@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const RegionControler = require('../features/region/region.controller')
+const authMiddleware = require('../shared/middleware/authentication').isAuth
 
 
 const registerRegionRoute = (app) => {

@@ -4,7 +4,7 @@ const Express = require('express');
 const app = Express();
 const port = process.env.PORT || 3004;
 const MongoManager = require('./src/shared/resources/db/mongodb/mongo-manager')
-const middleWare = require('./src/shared/resources/middleware').logMiddleware
+const middleWare = require('./src/shared/middleware/logger').logMiddleware
 
 // Logger MIDDLEWARE
 app.use(middleWare);
