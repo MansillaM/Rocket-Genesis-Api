@@ -1,4 +1,4 @@
-const Data = require('../../shared/resources/data');
+const Data = require('../../shared/resources/db/mongodb/schemas');
 
 const contactUs = (req,res) => {
   const firstName = req.body.first_name;
@@ -18,7 +18,7 @@ const calculateResidentialQuote = (req,res) => {
   const tier = req.query.tier.toLowerCase();
 
   // validate request object
-  if(!Object.keys(Data.unitPrices).includes(tier)){
+  if(!Object.keys(Data.UnitPrice).includes(tier)){
     res.status(400);
     res.send(`Error: invalid tier`);
     return;
@@ -58,15 +58,9 @@ const calcResidentialElev = (numFloors, numApts) => {
   return elevatorsRequired;
 };
 
-const calcCommercialElev = (numFloors, maxOccupancy) => {
-  const elevatorsRequired = Math.ceil((maxOccupancy * numFloors) / 200)*Math.ceil(numFloors / 10);
-  const freighElevatorsRequired = Math.ceil(numFloors / 10);
-  return freighElevatorsRequired + elevatorsRequired;
-};
-
 const calcInstallFee = (numElvs, tier) => {
-  const unitPrice = Data.unitPrices[tier];
-  const installPercentFees = Data.installPercentFees[tier];
+  const unitPrice = Data.UnitPrice[tier];
+  const installPercentFees = Data.InstallationFees[tier];
   const total = numElvs * unitPrice * installPercentFees;
   return total;
 };

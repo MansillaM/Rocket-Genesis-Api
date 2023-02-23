@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Schema for Agents
 const AgentSchema = new mongoose.Schema({
     first_name: {
         type: String,
@@ -31,8 +32,9 @@ const AgentSchema = new mongoose.Schema({
     },
 });
 
-const Agent = mongoose.model("Agent", AgentSchema);
+const Agent = mongoose.model("agents", AgentSchema);
 
+// Schema for Region
 const RegionSchema = new mongoose.Schema({
     region: {
         type: String,
@@ -57,8 +59,46 @@ const RegionSchema = new mongoose.Schema({
 
 const Region = mongoose.model("Region", RegionSchema);
 
+// Schema for Unit prices
+const UnitPriceSchema = new mongoose.Schema({
+    standard: {
+        type: Number,
+        default: 8000,
+    },
+    premium: {
+        type: Number,
+        default: 12000,
+    },
+    excelium: {
+        type: Number,
+        default: 15000,
+    },
+})
+
+const UnitPrice = mongoose.model("Unit Price", UnitPriceSchema);
+
+// Schema for Installation Fees
+const InstallationFeesSchema = new mongoose.Schema({
+    standard: {
+        type: Number,
+        default: 8000,
+    },
+    premium: {
+        type: Number,
+        default: 12000,
+    },
+    excelium: {
+        type: Number,
+        default: 15000,
+    },
+})
+
+const InstallationFees = mongoose.model("Installation Percentafe Fees", InstallationFeesSchema);
+
 module.exports = 
 {
     Agent,
-    Region
+    Region,
+    UnitPrice,
+    InstallationFees
 };

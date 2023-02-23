@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const AgentController = require('../features/agent/agent.controller');
+const authMiddleware = require('../shared/middleware/authentication').isAuth
 
 
 const registerAgentRoutes = (app) => {
 
-  app.get('/agents', AgentController.getAgents);  
+  app.get('/agents', authMiddleware, AgentController.getAgents);  
 
   app.get('/agents-by-region', AgentController.agentByRegion);
 
