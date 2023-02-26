@@ -8,13 +8,13 @@ const registerAgentRoutes = (app) => {
 
   app.get('/agents', authMiddleware, AgentController.getAgents);  
 
-  app.get('/agents-by-region', AgentController.agentByRegion);
+  app.get('/agents-by-region', authMiddleware, AgentController.agentByRegion);
 
-  app.post("/agent-create", AgentController.createAgent);
+  app.post("/agent-create", authMiddleware, AgentController.createAgent);
 
-  app.patch("/agent-update-info/:id", AgentController.updateAgent);
+  app.patch("/agent-update-info/:id", authMiddleware, AgentController.updateAgent);
 
-  app.delete("/agent-delete/:id", AgentController.deleteAgent);
+  app.delete("/agent-delete/:id", authMiddleware, AgentController.deleteAgent);
 
 }
 

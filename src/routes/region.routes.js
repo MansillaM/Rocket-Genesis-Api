@@ -6,11 +6,13 @@ const authMiddleware = require('../shared/middleware/authentication').isAuth
 
 const registerRegionRoute = (app) => {
 
-    app.get('/region-all', RegionControler.region);
+    app.get('/region-all', authMiddleware, RegionControler.region);
 
-    app.get('/region', RegionControler.regionByRegion);
+    app.get('/region', authMiddleware, RegionControler.regionByRegion);
 
-    app.post('region-create', RegionControler.createRegion);
+    app.post('/region-create', RegionControler.createRegion);
+
+    app.get('/all-stars', RegionControler.getAllStars)
 
 }
 
