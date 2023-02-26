@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 // Schema for Agents
 const AgentSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     first_name: {
         type: String,
         required: true,
@@ -29,13 +30,14 @@ const AgentSchema = new mongoose.Schema({
     sales: {
         type: Number,
         default: 0,
-    },
+    }
 });
 
 const Agent = mongoose.model("agents", AgentSchema);
 
 // Schema for Region
 const RegionSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     region: {
         type: String,
         lowercase: true,
@@ -48,14 +50,14 @@ const RegionSchema = new mongoose.Schema({
         type: Number,
     },
     manager: {
-        type: String,
-        lowercase: true,
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Agent',
     },
     top_agents: {
-        type: String,
-        lowercase: true,
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Agent',
     },
-})
+});
 
 const Region = mongoose.model("Region", RegionSchema);
 
