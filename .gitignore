@@ -1,3 +1,6 @@
 node_modules/
 
+# dotenv environment variables file
 .env
+
+src/shared/resources/db/mongodb/mongo-manager.js
