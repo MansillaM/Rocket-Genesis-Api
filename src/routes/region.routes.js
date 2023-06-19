@@ -12,7 +12,7 @@ const registerRegionRoute = (app) => {
 
     app.post('/region-create', RegionControler.createRegion);
 
-    app.get('/all-stars', RegionControler.getAllStars)
+    // app.get('/all-stars', RegionControler.getAllStars)
 
 }
 
